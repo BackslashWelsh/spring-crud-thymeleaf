@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
-<!--<html lang="en">-->
 <head>
     <meta charset="UTF-8">
     <title>Items</title>
@@ -16,22 +15,11 @@
         <table class="zui-table">
             <thead>
             <tr>
-                <th>
-                    Order id
-                </th>
-                <th>
-                    Product name
-                </th>
-                <th>
-                    Price
-                </th>
-                <th>
-                    Quantity
-                </th>
-                <th>
-                    Subtotal
-                </th>
-
+                <th>Order id</th>
+                <th>Product name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
             </tr>
             </thead>
             <tbody>
@@ -40,13 +28,10 @@
             </tr>
             <tr th:each="item: ${items}" th:with="edit=${'ASC'}">
                 <td th:text="${item.orderItemId.orderId.id}">Order id</td>
-                <!--                <td th:text="${item.orderItemId.productId.name}">Product name</td>-->
                 <td th:text="${item.orderItemId.productId.name}">Product name</td>
                 <td th:text="${item.orderItemId.productId.unitPrice}">Price</td>
                 <td th:text="${item.quantity}">Quantity</td>
                 <td th:text="${item.subtotal}">Subtotal</td>
-                <td align="center">
-                </td>
 
             </tr>
             </tbody>
