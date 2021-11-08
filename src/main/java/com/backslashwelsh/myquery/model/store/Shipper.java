@@ -1,12 +1,9 @@
 package com.backslashwelsh.myquery.model.store;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -21,6 +18,6 @@ public class Shipper {
     @Column(name = "shipper_id")
     private int id;
 
-    @NotBlank
+    @NotNull
     private String name;
 }

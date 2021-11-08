@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -50,8 +51,11 @@ public class OrderItemController {
     @PostMapping("/{orderId}")
     public String addItem(@PathVariable("orderId") int orderId,
                           @ModelAttribute("item") @Valid OrderItem item,
-                          BindingResult result) {
+                          BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
+            attributes.addFlashAttribute("producty",
+                    productService.findAll(Sort.by("name")));//fixme later
+            System.out.println("ERRRRO");
             return "order-items/new-item";
         }
         itemService.add(orderId, item);

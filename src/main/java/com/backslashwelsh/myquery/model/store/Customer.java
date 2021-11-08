@@ -1,15 +1,11 @@
 package com.backslashwelsh.myquery.model.store;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -26,28 +22,27 @@ public class Customer {
     @Column(name = "customer_id")
     private int id;
 
-    @NotBlank
+    @NotNull
     private String firstName;
 
-    @NotBlank
+    @NotNull
     private String lastName;
 
-    @DateTimeFormat
+    @DateTimeFormat // TODO: 06.11.2021 change to custom. If is it better LocalDate
     private LocalDate birthDate;
 
     private String phone;
 
-    @NotBlank
+    @NotNull
     private String address;
 
-    @NotBlank
+    @NotNull
     private String city;
 
-    @NotBlank
+    @NotNull
     @Length(max = 2)
     private String state;
 
-    @NotNull
     @Max(11)
     private int points;
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/basic}">
+<!--<html lang="en">-->
 <head>
     <meta charset="UTF-8">
     <title>Items</title>
@@ -15,31 +16,43 @@
         <table class="zui-table">
             <thead>
             <tr>
-                <th>Order id</th>
-                <th>Product name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
+                <th>
+                   Order id
+                </th>
+                <th>
+                  Product name
+                </th>
+                <th>
+                   Price
+                </th>
+                <th>
+                   Quantity
+                </th>
+                <th>
+                    Subtotal
+                </th>
+
             </tr>
             </thead>
             <tbody>
             <tr th:if="${#lists.isEmpty(items)}">
                 <td colspan="10">No items found</td>
             </tr>
-            <tr th:each="item: ${items}" th:with="edit=${'ASC'}">
+            <tr th:with="edit=${'ASC'}" th:each="item: ${items}">
                 <td th:text="${item.orderItemId.orderId.id}">Order id</td>
+<!--                <td th:text="${item.orderItemId.productId.name}">Product name</td>-->
                 <td th:text="${item.orderItemId.productId.name}">Product name</td>
                 <td th:text="${item.orderItemId.productId.unitPrice}">Price</td>
                 <td th:text="${item.quantity}">Quantity</td>
                 <td th:text="${item.subtotal}">Subtotal</td>
+                <td align="center">
+                </td>
 
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<a href="/">Home</a>
-<a href="/products">Products</a>
 
 </body>
 </html>

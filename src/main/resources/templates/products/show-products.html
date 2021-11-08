@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/basic}">
+<!--<html lang="en">-->
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
@@ -11,12 +12,21 @@
 <div layout:fragment="content">
     <h1>Products</h1>
 
+    <!--    <th:block th:include="fragment/success-message.html"></th:block>-->
+
+    <!--    <a th:href="@{/students/new}" class="btn btn-outline-success mb-3">-->
+    <!--        <i class="fas fa-fw fa-user-plus"></i> New user-->
+    <!--    </a>-->
+    <!--    <div><h2 th:if="${(param.sort[0] == quantityInStock)}">Nuremaeer</h2></div>-->
+    <!--    <div><h2 th:if="@{''(sort=name)}">Nuremaeer</h2></div>-->
+    <!--    <div><h2 th:if="@{''(sort=name)}">Nuremaeer</h2></div>-->
+    <!--  sorting....  <h2 th:text="${sorty}">Name</h2>-->
+    <!--    <h2 th:with="dir=${ASC}"></h2>-->
+
     <a th:href="@{/products/new}">
-        <button style="padding:5px 8px;border-radius:4px;margin:5px;" type="button">Add new product</button>
+        <button style="padding:5px 8px;border-radius:4px;margin:5px;"  type="button">Add new product</button>
     </a>
-    <snip style="color:red;padding:5px" th:if="${dependsError} != null"
-          th:text="${dependsError}">Depends error
-    </snip>
+    <snip style="color:red;padding:5px" th:if="${dependsError} != null" th:text="${dependsError}">Depends error</snip>
 
     <div th:with="dir=${'ASC'}">
         <table class="zui-table">
@@ -26,8 +36,7 @@
                     <a th:href="@{/products?sort=name,} + ${dir}">Name</a>
                 </th>
                 <th>
-                    <a th:href="@{/products?sort=quantityInStock,} + ${dir}">
-                        Quantity <br> in stock</a>
+                    <a th:href="@{/products?sort=quantityInStock,} + ${dir}">Quantity <br> in stock</a>
                 </th>
                 <th>
                     <a th:href="@{/products?sort=unitPrice,} + ${dir}">Unit price</a>
@@ -44,19 +53,35 @@
                 <td th:text="${product.quantityInStock}">Quantity</td>
                 <td th:text="${product.unitPrice}">Price</td>
                 <td align="center">
+                    <!--                    <input type="button" value="Edit"-->
+                    <!--                           th:onclick="@{/products/{id}/edit(id=${product.id})}">-->
+                    <!--                    <button th:onclick="@{/products/{id}/edit(id=${product.id})}">Edit</button>-->
                     <a th:href="@{/products/{id}/edit(id=${product.id})}">
                         <button type="button">Edit</button>
                     </a>
-                    <form th:action="@{/products/{id}(id=${product.id})}" th:method="DELETE">
+                    <form th:method="DELETE" th:action="@{/products/{id}(id=${product.id})}">
                         <button type="submit">Delete</button>
                     </form>
                 </td>
+
+                <!--                <td>-->
+                <!--                    <div class="btn-group">-->
+                <!--                        <a th:href="@{/products/{id}/edit(id=${product.id})}"-->
+                <!--                           class="btn btn-sm btn-outline-primary">-->
+                <!--                            <i class="fas fa-fw fa-pencil-alt"></i>-->
+                <!--                        </a>-->
+                <!--                        <button type="button" class="btn btn-sm btn-outline-danger"-->
+                <!--                                data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"-->
+                <!--                                th:attr="data-bs-href=@{/students/{id}/delete(id=${product.id})}">-->
+                <!--                            <i class="fas fa-fw fa-trash-alt"></i>-->
+                <!--                        </button>-->
+                <!--                    </div>-->
+                <!--                </td>-->
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<a href="/">Home</a>
-<a href="/order-items/all">Items in order</a>
+
 </body>
 </html>
