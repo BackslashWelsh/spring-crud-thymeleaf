@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <!--    <h1 >[(${id})]</h1>-->
+    <h3>Items of order # [[${orderId}]]</h3>
+
+
+    <!--    <a th:href="@{/products/new}">-->
+    <!--        <button style="padding:5px 8px;border-radius:4px;margin:5px;"  type="button">Add new product</button>-->
+    <!--    </a>-->
+    <!--    <snip style="color:red;padding:5px" th:if="${dependsError} != null" th:text="${dependsError}">Depends error</snip>-->
+
+    <div th:with="dir=${'ASC'}">
+        <table class="zui-table">
+            <thead>
+            <tr>
+                <th>
+                    Product name
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Subtotal
+                </th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(items)}">
+                <td colspan="10">No items found</td>
+            </tr>
+            <tr th:each="item: ${items}" th:with="edit=${'ASC'}">
+                <td th:text="${item.orderItemId.productId.name}">Product name</td>
+                <td th:text="${item.orderItemId.productId.unitPrice}">Price</td>
+                <td th:text="${item.quantity}">Quantity</td>
+                <td th:text="${item.subtotal}">Subtotal</td>
+                <td align="center">
+
+                    <!--                    <form th:method="DELETE" th:action="@{/products/{id}(id=${product.id})}">-->
+                    <!--                        <button type="submit">Delete</button>-->
+                    <!--                    </form>-->
+                </td>
+            </tr>
+
+
+            <!--            <form th:method="POST" th:action="@{/order-items}" th:object="${item}">-->
+            <!--                <fieldset>-->
+            <!--                    <legend>Product Information</legend>-->
+            <!--                    <div>-->
+
+            <!--                        <div>-->
+            <!--                            <label>Name</label>-->
+            <!--                            <input type="text" placeholder="Enter the name..." th:field="*{name}">-->
+            <!--                            <snip style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> error</snip>-->
+
+            <!--                        </div>-->
+
+
+            </tbody>
+        </table>
+        <a th:href="@{/order-items/{id}/new(id=${orderId})}">
+            <button type="button">Add product</button>
+        </a>
+        <!--        <a th:href="@{/order-items/{id}/add(id=${id})}">-->
+        <!--            <button type="button">Edit order</button>-->
+        <!--        </a>-->
+    </div>
+</div>
+
+</body>
+</html>

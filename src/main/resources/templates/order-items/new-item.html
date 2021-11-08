@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <!--    <h1 >[(${id})]</h1>-->
+    <h3>Items of order # [[${orderId}]]</h3>
+
+    <snip style="color:red;padding:5px" th:if="${producty} != null">Depends error</snip>
+
+    <!--    <a th:href="@{/products/new}">-->
+    <!--        <button style="padding:5px 8px;border-radius:4px;margin:5px;"  type="button">Add new product</button>-->
+    <!--    </a>-->
+    <!--    <snip style="color:red;padding:5px" th:if="${dependsError} != null" th:text="${dependsError}">Depends error</snip>-->
+
+
+    <form th:action="@{/order-items/{id}(id=${orderId})}" th:method="POST" th:object="${item}">
+        <fieldset>
+            <!--                    <legend>Product Information</legend>-->
+            <div>Product name
+                <select th:field="*{orderItemId.productId}">
+                    <!--                <select th:field="*{id}">-->
+                    <!--                <select th:field="*{item.orderItemId.productId.name}">-->
+                    <option id="prodOpt" th:each="product: ${products}" th:text="${product.name}"
+                            th:value="${product.id}">
+                        <!--                                    th:selected="${product.id} == ${item.orderItemId.productId.id} ? true : false">-->
+                        Product name
+                    </option>
+                </select>
+
+                <div>
+                    <label>Quantity</label>
+                    <input placeholder="Enter the quantity..." th:field="*{quantity}" type="text">
+                    <snip style="color:red" th:errors="*{quantity}" th:if="${#fields.hasErrors('quantity')}"> error
+                    </snip>
+
+                </div>
+            </div>
+        </fieldset>
+
+        <div>
+            <!--                    <div>-->
+            <!--                        <a th:href="@{/products}">-->
+            <!--                            Back-->
+            <!--                        </a>-->
+            <!--                    </div>-->
+            <div>
+                <button type="submit">
+                    Create
+                </button>
+            </div>
+
+        </div>
+    </form>
+    </tr>
+
+    </tbody>
+    </table>
+</div>
+</div>
+
+</body>
+</html>
