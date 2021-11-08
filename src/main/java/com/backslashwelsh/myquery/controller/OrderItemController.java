@@ -57,7 +57,7 @@ public class OrderItemController {
                     productService.findAll(Sort.by("name")));//fixme later
             System.out.println("ERRRRO");
             return "order-items/new-item";
-        }
+        } //
         itemService.add(orderId, item);
         return "redirect:/order-items/{orderId}";
     }
