@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -29,17 +30,18 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customerId;
 
-    @DateTimeFormat // fixme: 06.11.2021 check. do you need time?
+    @NotNull
+    @DateTimeFormat
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'PROCESSED'")
     private OrderStatus status = OrderStatus.PROCESSED;
 
-    @Column(length = 1000)
+    @Column(length = 1_000)
     private String comments;
 
-    @DateTimeFormat // TODO: check
+    @DateTimeFormat
     private LocalDate shippedDate;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -47,7 +49,6 @@ public class Order {
     private Shipper shipperId;
 
     @OneToMany(mappedBy = "orderItemId.orderId", fetch = FetchType.LAZY)
-//    @JoinColumn(name = "order_item")
     private Set<OrderItem> orderItems;
 
 }

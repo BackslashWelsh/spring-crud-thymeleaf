@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface OrderItemRepository extends JpaRepository<OrderItem, OrderItemId> {
 
     @Query("SELECT oi FROM OrderItem oi WHERE "
-           + "oi.orderItemId.orderId.id = :id")
+            + "oi.orderItemId.orderId.id = :id")
     List<OrderItem> findAllByOrderId(int id);
 
     @Query("SELECT o FROM Order o WHERE "
-           + "o.id = :id")
+            + "o.id = :id")
     Optional<Order> findOrderById(int id);
 }

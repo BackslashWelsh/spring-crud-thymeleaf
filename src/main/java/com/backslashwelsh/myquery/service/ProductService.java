@@ -24,7 +24,7 @@ public class ProductService {
     public List<Product> findAll(Sort sort) {
         return sort.isSorted() ? repository.findAll(sort)
                 : repository.findAll(Sort.by("name"));
-    } //todo maybe later https://howtodoinjava.com/spring-boot2/pagination-sorting-example/
+    }
 
     public Product findById(int id) {
         return repository.findById(id).orElseThrow();

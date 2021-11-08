@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
-<!--<html lang="en">-->
 <head>
     <meta charset="UTF-8">
     <title>Items</title>
@@ -10,16 +9,7 @@
 <body>
 
 <div layout:fragment="content">
-    <!--    <h1 >[(${id})]</h1>-->
     <h3>Items of order # [[${orderId}]]</h3>
-
-    <snip style="color:red;padding:5px" th:if="${producty} != null">Depends error</snip>
-
-    <!--    <a th:href="@{/products/new}">-->
-    <!--        <button style="padding:5px 8px;border-radius:4px;margin:5px;"  type="button">Add new product</button>-->
-    <!--    </a>-->
-    <!--    <snip style="color:red;padding:5px" th:if="${dependsError} != null" th:text="${dependsError}">Depends error</snip>-->
-
 
     <form th:action="@{/order-items/{id}(id=${orderId})}" th:method="POST" th:object="${item}">
         <fieldset>

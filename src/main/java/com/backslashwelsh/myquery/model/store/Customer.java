@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -25,27 +26,28 @@ public class Customer {
     @Column(name = "customer_id")
     private int id;
 
-    @NotNull
+    @NotBlank
     private String firstName;
 
-    @NotNull
+    @NotBlank
     private String lastName;
 
-    @DateTimeFormat // TODO: 06.11.2021 change to custom. If is it better LocalDate
+    @DateTimeFormat
     private LocalDate birthDate;
 
     private String phone;
 
-    @NotNull
+    @NotBlank
     private String address;
 
-    @NotNull
+    @NotBlank
     private String city;
 
-    @NotNull
+    @NotBlank
     @Length(max = 2)
     private String state;
 
+    @NotNull
     @Max(11)
     private int points;
 

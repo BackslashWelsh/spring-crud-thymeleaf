@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -21,6 +21,6 @@ public class Shipper {
     @Column(name = "shipper_id")
     private int id;
 
-    @NotNull
+    @NotBlank
     private String name;
 }

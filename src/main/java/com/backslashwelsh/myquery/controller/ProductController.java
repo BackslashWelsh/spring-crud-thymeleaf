@@ -55,11 +55,9 @@ public class ProductController {
                          @ModelAttribute("product") @Valid Product product,
                          BindingResult result) {
         if (result.hasErrors()) {
-//            product.setId(id);// FIXME do you need it
             return "products/edit-product";
         }
         service.update(id, product);
-        //attribute massage
         return "redirect:/products";
     }
 
@@ -71,7 +69,6 @@ public class ProductController {
             return "redirect:/products";
         }
         service.delete(id);
-        //attribute massage
         return "redirect:/products";
     }
 }
