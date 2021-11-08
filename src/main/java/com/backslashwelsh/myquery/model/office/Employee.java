@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -28,8 +29,9 @@ public class Employee {
     @NotBlank
     private String jobTitle;
 
+    @NotNull
     @Min(5)
-    private int salary;
+    private Integer salary;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reports_to", nullable = true)
@@ -38,8 +40,6 @@ public class Employee {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id")
-    @ToString.Exclude
     private Office officeId;
-
 
 }

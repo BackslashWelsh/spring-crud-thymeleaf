@@ -2,9 +2,7 @@ package com.backslashwelsh.myquery.service;
 
 import com.backslashwelsh.myquery.model.store.Order;
 import com.backslashwelsh.myquery.model.store.OrderItem;
-import com.backslashwelsh.myquery.model.store.Product;
 import com.backslashwelsh.myquery.repository.OrderItemRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

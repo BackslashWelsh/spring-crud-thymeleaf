@@ -10,14 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem, OrderItemId> {
-//    @Query(value = "SELECT IF (count(*) > 0, 'true', 'false') "
-//            + "FROM order_items WHERE product_id = :id", nativeQuery = true)
 
-    @Query("SELECT oi FROM OrderItem oi WHERE " +
-            "oi.orderItemId.orderId.id = :id")
+    @Query("SELECT oi FROM OrderItem oi WHERE "
+            + "oi.orderItemId.orderId.id = :id")
     List<OrderItem> findAllByOrderId(int id);
 
-    @Query("SELECT o FROM Order o WHERE " +
-            "o.id = :id")
+    @Query("SELECT o FROM Order o WHERE "
+            + "o.id = :id")
     Optional<Order> findOrderById(int id);
 }

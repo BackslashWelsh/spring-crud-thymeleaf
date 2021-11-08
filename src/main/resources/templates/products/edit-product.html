@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/basic}">
-<!--<html lang="en">-->
+<html lang="en" layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Edit product</title>
@@ -9,30 +8,32 @@
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/products/{id}(id=${product.id})}" th:object="${product}">
+<form th:action="@{/products/{id}(id=${product.id})}" th:method="PATCH" th:object="${product}">
     <fieldset>
         <legend>Product Information</legend>
         <div>
 
             <div>
                 <label>Name</label>
-                <input type="text" placeholder="Enter the name..." th:field="*{name}">
-                <snip style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> error</snip>
+                <input placeholder="Enter the name..." th:field="*{name}" type="text">
+                <snip style="color:red" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"> error</snip>
             </div>
             <div>
                 <label>Quantity <br> in stock</label>
-                <input type="text" placeholder="Enter the quantity..."
-                       th:field="*{quantityInStock}">
-                <snip style="color:red" th:if="${#fields.hasErrors('quantityInStock')}" th:errors="*{quantityInStock}">
-                    error
+                <input placeholder="Enter the quantity..." th:field="*{quantityInStock}"
+                       type="text">
+                <snip style="color:red" th:errors="*{quantityInStock}"
+                      th:if="${#fields.hasErrors('quantityInStock')}">error
                 </snip>
             </div>
         </div>
         <div>
             <div>
                 <label>Unit price</label>
-                <input type="text" placeholder="Enter the price..." th:field="*{unitPrice}">
-                <snip style="color:red" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"> error</snip>
+                <input placeholder="Enter the price..." th:field="*{unitPrice}" type="text">
+                <snip style="color:red" th:errors="*{unitPrice}"
+                      th:if="${#fields.hasErrors('unitPrice')}"> error
+                </snip>
             </div>
         </div>
     </fieldset>

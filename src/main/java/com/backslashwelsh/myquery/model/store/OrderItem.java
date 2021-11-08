@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -19,38 +20,19 @@ import javax.validation.constraints.Min;
 @Table(name = "order_items")
 public class OrderItem {
 
-//fixme
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "order_id")
-//    int id;
-
-    //    @Id
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "order_id")
-//    Order orderId;
-//
-//
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "product_id")
-//    Product productId;
     @EmbeddedId
     private OrderItemId orderItemId;
 
+    @NotNull
     @Min(1)
-    private int quantity;
+    private Integer quantity;
 
     @Transient
     private float subtotal;
 
     public float getSubtotal() {
         float unround = quantity * orderItemId.getProductId().getUnitPrice();
-        return Math.round(unround * 100) / 100.0f; // fixme use JavaScipt
+        return Math.round(unround * 100) / 100.0f;
 
     }
-
-
-//    @ManyToOne
-//    @JoinColumn(name = "order_id")
-//    private Order order_id;
-
 }

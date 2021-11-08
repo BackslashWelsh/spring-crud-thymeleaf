@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/basic}">
-<!--<html lang="en">-->
+<html lang="en" layout:decorate="~{/layout/basic}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Items</title>
@@ -10,35 +9,22 @@
 <body>
 
 <div layout:fragment="content">
-    <!--    <h1 >[(${id})]</h1>-->
     <h3>Items of order # [[${orderId}]]</h3>
 
-    <snip style="color:red;padding:5px" th:if="${producty} != null" >Depends error</snip>
-
-    <!--    <a th:href="@{/products/new}">-->
-    <!--        <button style="padding:5px 8px;border-radius:4px;margin:5px;"  type="button">Add new product</button>-->
-    <!--    </a>-->
-    <!--    <snip style="color:red;padding:5px" th:if="${dependsError} != null" th:text="${dependsError}">Depends error</snip>-->
-
-
-    <form th:method="POST" th:action="@{/order-items/{id}(id=${orderId})}" th:object="${item}">
+    <form th:action="@{/order-items/{id}(id=${orderId})}" th:method="POST" th:object="${item}">
         <fieldset>
-            <!--                    <legend>Product Information</legend>-->
             <div>Product name
                 <select th:field="*{orderItemId.productId}">
-                    <!--                <select th:field="*{id}">-->
-                    <!--                <select th:field="*{item.orderItemId.productId.name}">-->
-                    <option id="prodOpt" th:each="product: ${products}" th:value="${product.id}"
-                            th:text="${product.name}">
-                        <!--                                    th:selected="${product.id} == ${item.orderItemId.productId.id} ? true : false">-->
+                    <option id="prodOpt" th:each="product: ${products}" th:text="${product.name}"
+                            th:value="${product.id}">
                         Product name
                     </option>
                 </select>
 
                 <div>
                     <label>Quantity</label>
-                    <input type="text" placeholder="Enter the quantity..." th:field="*{quantity}">
-                    <snip style="color:red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"> error
+                    <input placeholder="Enter the quantity..." th:field="*{quantity}" type="text">
+                    <snip style="color:red" th:errors="*{quantity}" th:if="${#fields.hasErrors('quantity')}"> error
                     </snip>
 
                 </div>
@@ -46,18 +32,12 @@
         </fieldset>
 
         <div>
-            <!--                    <div>-->
-            <!--                        <a th:href="@{/products}">-->
-            <!--                            Back-->
-            <!--                        </a>-->
-            <!--                    </div>-->
-            <div>
-                <button type="submit">
-                    Create
-                </button>
-            </div>
-
+            <button type="submit">
+                Create
+            </button>
         </div>
+
+
     </form>
     </tr>
 
